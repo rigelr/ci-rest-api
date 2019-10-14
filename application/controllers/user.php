@@ -7,21 +7,29 @@ class user extends CI_Controller {
     {
         //digunakan untuk menjalankan fungsi construct pada class parent::__controller
         parent::__construct();
+        $this->load->helper('url');
+        $this->load->helper('form');
+         $this->load->model('login_model');
+         $this->load->model('siswa_model');
+         //$this->load->model('mahasiswa_model');
+
         if ($this->session->userdata('level') != 'user') {
             redirect('login', 'refresh');
             }
-        // $this->load->helper('url');
-        // $this->load->helper('form');
-        // $this->load->model('login_model');
+        // 
     }
 
 
     public function index()
     {
-        $data['title'] = 'Halaman User';
-        $this->load->view('template/header',$data);
-        $this->load->view('mahasiswa/user');
-        $this->load->view('template/footer');
+        $data=array(
+            'title'=>'datasiswa',
+            'siswa'=>$this->siswa_model->datatabels()
+        );
+        //$data['title'] = 'Halaman User';
+        $this->load->view('template/header_datatabels_user',$data);
+        $this->load->view('siswa/user');
+        $this->load->view('template/footer_datatabels_user',$data);
         
     }
 }

@@ -45,6 +45,13 @@ class siswa_model extends CI_Model {
         return $this->db->get('siswa')->result_array();
     }
 
+    
+    public function datatabels(){
+        $query=$this->db->order_by('id','desc')->get('siswa');
+        return $query->result();
+    }
+
+
 }
 /* End of file Controllername.php */
 ?>
